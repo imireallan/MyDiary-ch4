@@ -5,17 +5,20 @@ module.exports = {
 
     mode: "development",
 
-    // setting up the entry point
-    entry: "./src/js/main.js",
+    // define entry points
+    entry: {
+        app: "./src/js/main.js",
+        signup: "./src/js/signup.js"
 
+    },
+    // define output point
     output:{
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
-        publicPath: "/dist"
+        path: path.resolve(__dirname, "src/dist"),
+        filename: "[name].min.js",
     },
     module: {
         rules:[{
-            test:/\.js?$/,
+            test:/\.js$/,
             exclude:/node_modules/,
             use:[{
                 loader:"babel-loader",
@@ -24,28 +27,28 @@ module.exports = {
                 }
             }]
         },
-    {
-        test:/\.css$/,
-        use:[
-            "style-loader",
-            "css-loader"
-        ]
-    },
-    {
-        test:/\.(jpg | png)$/,
-        use:[
-            "file-loader",
-            {
-                loader: "image-webpack-loader",
-                options:{
-                    name:"[name].[ext]",
-                    outputPath:"/img/",
-                    publicPath:"/img/"
+        {
+            test:/\.css$/,
+            use:[
+                "style-loader",
+                "css-loader"
+            ]
+        },
+        {
+            test:/\.(jpg | png)$/,
+            use:[
+                "file-loader",
+                {
+                    loader: "image-webpack-loader",
+                    options:{
+                        name:"[name].[ext]",
+                        outputPath:"/img/",
+                        publicPath:"/img/"
+                    }
                 }
-            }
-            
-        ]
-    }
+                
+            ]
+        }
 ]
     }
 }
