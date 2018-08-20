@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
 
 module.exports = {
 
@@ -8,7 +7,8 @@ module.exports = {
     // define entry points
     entry: {
         app: "./src/js/main.js",
-        signup: "./src/js/signup.js"
+        signup: "./src/js/signup.js",
+        signin: "./src/js/signin.js"
 
     },
     // define output point
