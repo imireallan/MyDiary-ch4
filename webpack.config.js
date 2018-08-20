@@ -8,7 +8,9 @@ module.exports = {
     entry: {
         app: "./src/js/main.js",
         signup: "./src/js/signup.js",
-        signin: "./src/js/signin.js"
+        signin: "./src/js/signin.js",
+        dashboard: "./src/js/dashboard.js",
+        addEntry: "./src/js/addEntry.js"
 
     },
     // define output point

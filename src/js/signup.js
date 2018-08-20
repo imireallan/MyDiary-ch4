@@ -20,7 +20,6 @@ signup.addEventListener('submit', e =>  {
     api.post('/auth/signup', data)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         if (data.message === 'User registered successfully'){
             success.classList.remove('hide')
             success.classList.add('show')
@@ -28,6 +27,7 @@ signup.addEventListener('submit', e =>  {
             setTimeout(() =>{window.location.href = './signin.html'},2000)
         }
         else{
+            success.classList.add('hide')
             warning.classList.remove('hide')
             warning.classList.add('show')
             warning.innerHTML = data.warning
