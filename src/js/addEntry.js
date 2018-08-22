@@ -18,6 +18,7 @@ addEntry.addEventListener("submit", e => {
     .then(res => res.json())
     .then(data => {
         if(data.message === "Entry added successfully"){
+            warning.classList.add("hide")
             success.classList.remove('hide')
             success.classList.add('show')
             success.innerHTML = data.message

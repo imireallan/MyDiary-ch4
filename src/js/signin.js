@@ -19,6 +19,7 @@ signin.addEventListener('submit', e =>  {
         if (data.message == "Logged in successfully"){
             localStorage.setItem("token", data.token)
             localStorage.setItem("username", username)
+            warning.classList.add("hide")
             success.classList.remove('hide')
             success.classList.add('show')
             success.innerHTML = data.message
