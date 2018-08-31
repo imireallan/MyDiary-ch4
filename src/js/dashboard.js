@@ -10,16 +10,18 @@ window.addEventListener("load", ()=>{
         let div = document.querySelector("#card")
         user.innerHTML = localStorage.getItem("username");
 
+
         if(data.entries){
             noOfEntries.innerHTML = data.entries.length
             let output = `<ul class="list-group">
             </ul>`;
             for (let entry of data.entries){
-                output +=            `
+                output +=`
                 <li class="list-group-item">
-                    <p>${entry.title}
+                    <p>
+                        <a href="#">${entry.title}</a>
                         <a class="button bg-dark float-right" href="editEntry.html">edit</a>
-                        <a class="button button1 float-right" href="${entry.id}">delete</a>
+                        <a class="button button1 float-right" href="#">delete</a>
                     </p>
                 </li>
                 `
@@ -33,4 +35,5 @@ window.addEventListener("load", ()=>{
 
         }
     })
+
 })

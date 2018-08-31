@@ -10,7 +10,8 @@ module.exports = {
         signup: "./src/js/signup.js",
         signin: "./src/js/signin.js",
         dashboard: "./src/js/dashboard.js",
-        addEntry: "./src/js/addEntry.js"
+        addEntry: "./src/js/addEntry.js",
+        contents: "./src/js/contents.js"
 
     },
     // define output point
