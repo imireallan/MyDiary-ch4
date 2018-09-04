@@ -25,10 +25,10 @@ window.addEventListener("load", ()=>{
                 let row = `<tr>
                     <td><input type="checkbox"/></td>
                     <td>${entry.title}</td>
-                    <td><a href="#" onClick=viewContents(${entry.entryId})>view contents</a></td>
+                    <td><a href="#" onclick="viewEntry(${entry.id})">view contents</a></td>
                     <td>${entry.created_at}</td>
-                    <td><a class="button bg-dark float-right" href="#" onClick=modifyEntry(${entry.entryId})>edit</a></td>
-                    <td><a class="button button1 float-right" href="#" onClick=deleteEntry(${entry.entryId})>delete</a></td>
+                    <td><a class="button bg-dark float-right" href="#" onclick="modifyEntry(${entry.entryId})">edit</a></td>
+                    <td><a class="button button1 float-right" href="#" onclick="deleteEntry(${entry.entryId})">delete</a></td>
                     </tr>`;
                 rows += row;
                 table.innerHTML = rows
@@ -43,3 +43,11 @@ window.addEventListener("load", ()=>{
     })
 
 })
+
+function viewEntry(entryId){
+    api.get(`/entries/${entryId}`)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+    })
+}
