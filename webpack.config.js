@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
 
@@ -12,7 +13,6 @@ module.exports = {
         dashboard: "./src/js/dashboard.js",
         addEntry: "./src/js/addEntry.js",
         contents: "./src/js/contents.js"
-
     },
     // define output point
     output:{
@@ -38,11 +38,14 @@ module.exports = {
             ]
         },
         {
+            test:/\.html$/,
+            use:[ "html-loader"]
+        },
+        {
             test:/\.(jpg | png)$/,
             use:[
-                "file-loader",
                 {
-                    loader: "image-webpack-loader",
+                    loader: "file-loader",
                     options:{
                         name:"[name].[ext]",
                         outputPath:"/img/",

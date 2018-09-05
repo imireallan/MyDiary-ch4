@@ -5,11 +5,12 @@ window.addEventListener("load", ()=>{
     .then(res => res.json())
     .then(data => {
 
+
         let user = document.querySelector("#username")
         let noOfEntries = document.querySelector("#entries");
         let table = document.querySelector("#table")
+        let view = document.querySelector("#view")
         user.innerHTML = localStorage.getItem("username");
-
 
         if(data.entries){
             noOfEntries.innerHTML = data.entries.length
@@ -25,10 +26,10 @@ window.addEventListener("load", ()=>{
                 let row = `<tr>
                     <td><input type="checkbox"/></td>
                     <td>${entry.title}</td>
-                    <td><a href="#" onclick="viewEntry(${entry.id})">view contents</a></td>
+                    <td><a href="contents.html?id=${entry.id}">view contents</a></td>
                     <td>${entry.created_at}</td>
-                    <td><a class="button bg-dark float-right" href="#" onclick="modifyEntry(${entry.entryId})">edit</a></td>
-                    <td><a class="button button1 float-right" href="#" onclick="deleteEntry(${entry.entryId})">delete</a></td>
+                    <td><a class="button bg-dark float-right" href="#" onclick="">edit</a></td>
+                    <td><a class="button button1 float-right" href="#" onclick="">delete</a></td>
                     </tr>`;
                 rows += row;
                 table.innerHTML = rows
@@ -36,18 +37,12 @@ window.addEventListener("load", ()=>{
 
         }else{
             noOfEntries.innerHTML = 0;
-            div.classList.add("alert", "alert-warning")
-            div.innerHTML = "No entries found"
+            view.classList.add("alert", "alert-warning")
+            view.innerHTML = "No entries found"
 
         }
     })
 
 })
 
-function viewEntry(entryId){
-    api.get(`/entries/${entryId}`)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-    })
-}
+
