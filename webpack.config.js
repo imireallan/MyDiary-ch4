@@ -12,7 +12,8 @@ module.exports = {
         signin: "./src/js/signin.js",
         dashboard: "./src/js/dashboard.js",
         addEntry: "./src/js/addEntry.js",
-        contents: "./src/js/contents.js"
+        contents: "./src/js/contents.js",
+        editEntry: "./src/js/editEntry.js"
     },
     // define output point
     output:{

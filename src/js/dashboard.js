@@ -28,7 +28,7 @@ window.addEventListener("load", ()=>{
                     <td>${entry.title}</td>
                     <td><a href="contents.html?id=${entry.id}">view contents</a></td>
                     <td>${entry.created_at}</td>
-                    <td><a class="button bg-dark float-right" href="#" onclick="">edit</a></td>
+                    <td><a class="button bg-dark float-right" href="editEntry.html?id=${entry.id}">edit</a></td>
                     <td><a class="button button1 float-right" href="#" onclick="">delete</a></td>
                     </tr>`;
                 rows += row;
