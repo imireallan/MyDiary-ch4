@@ -1,11 +1,9 @@
 import { api } from './api';
 
-window.addEventListener("load", ()=>{
+function loadEntries(){
     api.get("/entries")
     .then(res => res.json())
     .then(data => {
-
-
         let user = document.querySelector("#username")
         let noOfEntries = document.querySelector("#entries");
         let table = document.querySelector("#table")
@@ -22,17 +20,33 @@ window.addEventListener("load", ()=>{
                 <th></th>
                 <th></th>
             </tr>`
+            table.innerHTML = rows
             for (let entry of data.entries){
-                let row = `<tr>
-                    <td><input type="checkbox"/></td>
+
+                let tr = document.createElement('tr');
+                tr.innerHTML = `<td><input type="checkbox"/></td>
                     <td>${entry.title}</td>
                     <td><a href="contents.html?id=${entry.id}">view contents</a></td>
                     <td>${entry.created_at}</td>
                     <td><a class="button bg-dark float-right" href="editEntry.html?id=${entry.id}">edit</a></td>
-                    <td><a class="button button1 float-right" href="#" onclick="">delete</a></td>
                     </tr>`;
-                rows += row;
-                table.innerHTML = rows
+                rows += tr
+            
+
+                let td = document.createElement('td');
+                let link = document.createElement('a');
+                link.innerHTML = "Delete";
+                link.classList.add('button');
+                link.classList.add("button1");
+                link.classList.add("float-right");
+                
+                link.addEventListener("click", function(){
+                    deleteEntry(entry.id);
+                });
+                td.appendChild(link);
+                tr.appendChild(td);
+
+                table.appendChild(tr);
         }
 
         }else{
@@ -43,6 +57,26 @@ window.addEventListener("load", ()=>{
         }
     })
 
+}
+window.addEventListener("load", ()=>{
+   loadEntries();
 })
+function deleteEntry(entryId){
+    if ( confirm("Do you want to delete this entry?")){
+        api.delete(`/entries/${entryId}`)
+        .then(res => res.json())
+        .then(data => {
+            loadEntries();
+            let info = document.getElementById("info");
+            info.classList.add("alert", "alert-success")
+            info.innerHTML = data.message;
+            info.style.display = "block";
+
+            setTimeout(function(){
+                info.style.display = "";
+            }, 2000);
+        })
+    }
+}
 
 

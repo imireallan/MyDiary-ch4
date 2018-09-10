@@ -5,6 +5,15 @@ function getQueryParameter(key) {
     return url.searchParams.get(key);
 }
 let entryId = getQueryParameter('id');
+
+api.get(`/entries/${entryId}`)
+.then(res => res.json())
+.then(data => {
+    console.log(data)
+    document.getElementById("title").value = data['title'];
+    document.getElementById("contents").value = data['contents'];
+})
+
 const success = document.querySelector("#success")
 const warning = document.querySelector("#warning")
 
@@ -23,7 +32,6 @@ form.addEventListener("submit", e =>{
     api.update(`/entries/${entryId}`, data)
     .then(res => res.json())
     .then(data => {
-        contents = data.entry['contents']
         if(data.message == "Updated successfully"){
             warning.classList.add('hide')
             success.classList.remove('hide')
