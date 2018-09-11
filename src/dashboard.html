@@ -20,7 +20,7 @@
                     <ul>
                         <li class="active"><a href="./index.html">Home</a></li>
                         <li><a href="./dashboard.html">Dashboard</a></li>
-                        <li class="float-right"><a href="#">Logout</a></li>
+                        <li class="float-right"><a onclick="localStorage.clear(); window.location.href = 'index.html';">Logout</a></li>
                     </ul>
                 </div>
             </nav>
@@ -55,7 +55,8 @@
             MyDiary, Copyright &copy; 2018
         </p>
     </footer>
-    <script src="./dist/dashboard.min.js"></script>
+    <script src="./dist/dashboard.min.js">
+    </script>
     
 </body>
 </html>

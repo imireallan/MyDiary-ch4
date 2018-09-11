@@ -1,15 +1,17 @@
 import { api } from './api';
 
 function loadEntries(){
+    let table = document.querySelector("#table")
+    table.classList.add("loading");
     api.get("/entries")
     .then(res => res.json())
     .then(data => {
         let user = document.querySelector("#username")
         let noOfEntries = document.querySelector("#entries");
-        let table = document.querySelector("#table")
         let view = document.querySelector("#view")
         user.innerHTML = localStorage.getItem("username");
 
+        table.classList.remove("loading");
         if(data.entries){
             noOfEntries.innerHTML = data.entries.length
             let rows = `<tr>
@@ -50,6 +52,7 @@ function loadEntries(){
         }
 
         }else{
+            table.innerHTML = "";
             noOfEntries.innerHTML = 0;
             view.classList.add("alert", "alert-warning")
             view.innerHTML = "No entries found"
@@ -66,7 +69,6 @@ function deleteEntry(entryId){
         api.delete(`/entries/${entryId}`)
         .then(res => res.json())
         .then(data => {
-            loadEntries();
             let info = document.getElementById("info");
             info.classList.add("alert", "alert-success")
             info.innerHTML = data.message;
@@ -74,7 +76,8 @@ function deleteEntry(entryId){
 
             setTimeout(function(){
                 info.style.display = "";
-            }, 2000);
+                loadEntries();
+            }, 1000);
         })
     }
 }

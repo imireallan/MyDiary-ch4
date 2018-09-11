@@ -5,6 +5,7 @@ const warning = document.querySelector("#warning")
 
 signin.addEventListener('submit', e =>  {
     e.preventDefault()
+    signin.classList.add("loading");
     const username = document.querySelector("#username").value
     const password = document.querySelector("#password").value
 
@@ -16,6 +17,7 @@ signin.addEventListener('submit', e =>  {
     api.post('/auth/login', data)
     .then(res => res.json())
     .then(data => {
+        signin.classList.remove("loading");
         if (data.message == "Logged in successfully"){
             localStorage.setItem("token", data.token)
             localStorage.setItem("username", username)
